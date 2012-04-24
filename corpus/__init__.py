@@ -35,12 +35,42 @@ def schema(corpus_id):
 
 @app.route("/corpus/<corpus_id>/list")
 def corpus_list(corpus_id):
+#	add_docid(corpus_id)
+	
 	ix = open_dir("repository/"+corpus_id)
 	
 	sc = ix.searcher()
-	
+
 	q = Every()
-	
 	r = sc.search(q, limit=50)
+#	r = sc.search(q, limit="none")	
+
+	return render_template("list.html", corpus_id = corpus_id, items = r)
+
+@app.route("/corpus/<corpus_id>/doc/<doc_id>")
+def corpus_doc(corpus_id, doc_id):
 	
-	return render_template("list.html", items = r)
+	ix = open_dir("repository/"+corpus_id)
+	sc = ix.searcher()
+	
+	doc = sc.document(UT=doc_id)
+	
+	return render_template("doc.html", corpus_id = corpus_id, doc = doc)
+
+def add_docid(corpus_id):
+	ix = open_dir("repository/"+corpus_id)
+	writer = ix.writer()
+	writer.add_field("doc_id", ID(stored=True))
+	writer.commit()
+
+	sc = ix.searcher()
+
+	q = Every()
+	r = sc.search(q, limit="None")
+
+	for doc in r:
+		writer = ix.writer()
+		writer.update_document(UT= unicode(doc["UT"]), doc_id=doc["UT"])
+		writer.commit()
+
+	return True

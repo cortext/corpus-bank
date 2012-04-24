@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for entry in items %}
+    <li><h2><a href="/corpus/{{ entry.name }}/list">{{ entry.name }}</a></h2>{{ entry.count }} entries
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>{{ doc.TI }}</h2>
+	
+	<table>
+	{% for k,v in doc.iteritems() %}
+		<tr>
+		<td>{{ k }}</td><td>{{ v }}</td>
+		</tr>
+  	{% endfor %}
+	</table>
+{% endblock %}
