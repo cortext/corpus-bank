@@ -41,6 +41,6 @@ def corpus_list(corpus_id):
 	
 	q = Every()
 	
-	r = sc.search(q, limit="none")
+	r = sc.search(q, limit=50)
 	
 	return render_template("list.html", items = r)

@@ -2,7 +2,17 @@
 {% block body %}
   <ul class=entries>
   {% for entry in items %}
-    <li><h2>{{ entry.TI }}</h2>{{ entry.text|safe }}
+    <li><h2>{{ entry.TI }}</h2>
+	
+	<table>
+	{% for k,v in entry.iteritems() %}
+		<tr>
+		<td>{{ k }}</td><td>{{ v }}</td>
+		</tr>
+  	{% endfor %}
+	</table>
+
+	<hr />
   {% else %}
     <li><em>Unbelievable.  No entries here so far</em>
   {% endfor %}
