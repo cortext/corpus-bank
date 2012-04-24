@@ -60,7 +60,7 @@ def corpus_doc(corpus_id, doc_id):
 def add_docid(corpus_id):
 	ix = open_dir("repository/"+corpus_id)
 	writer = ix.writer()
-	writer.add_field("doc_id", ID(stored=True))
+	writer.add_field(ID(stored=True))
 	writer.commit()
 
 	sc = ix.searcher()

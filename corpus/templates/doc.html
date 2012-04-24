@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
+
+<ul>
+<li><a href="/">home</a></li>
+<li><a href="/corpus/{{ corpus_id }}/list">{{ corpus_id }}</a></li>
+</ul>
+
     <h2>{{ doc.TI }}</h2>
 	
 	<table>
