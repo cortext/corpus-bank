@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from whoosh.index import open_dir
 from whoosh.fields import *
-from whoosh import qparser
+from whoosh.qparser import QueryParser
+from whoosh.query import *
 
 app = Flask(__name__)
 app.debug = True
@@ -17,9 +18,8 @@ def corpus_list(corpus_id):
 	
 	sc = ix.searcher()
 	
-	qu = qparser.QueryParser("AB", ix.schema).parse(u"gene")
+	q = Every()
 	
-	r = sc.search(qu)
+	r = sc.search(q, limit="none")
 	
-	return str(len(r))
-	# return str(qu)
+	return render_template("list.html", items = r)
