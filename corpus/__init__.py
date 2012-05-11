@@ -28,6 +28,7 @@ def home():
 	
 	return render_template("home.html", items = items)
 
+
 @app.route("/corpus/<corpus_id>/schema")
 def schema(corpus_id):
 	ix = open_dir("repository/"+corpus_id)
@@ -45,7 +46,21 @@ def corpus_list(corpus_id):
 	r = sc.search(q, limit=50)
 #	r = sc.search(q, limit="none")	
 
-	return render_template("list.html", corpus_id = corpus_id, items = r)
+	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r))
+
+@app.route("/corpus/<corpus_id>/search/<request>")
+def corpus_search(corpus_id, request):
+#	add_docid(corpus_id)
+
+	ix = open_dir("repository/"+corpus_id)
+
+	sc = ix.searcher()
+
+	q = QueryParser("CO", schema=ix.schema).parse(request)
+	r = sc.search(q, limit=50)
+#	r = sc.search(q, limit="none")	
+
+	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r), query = q)
 
 @app.route("/corpus/<corpus_id>/doc/<doc_id>")
 def corpus_doc(corpus_id, doc_id):
