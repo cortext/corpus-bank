@@ -48,8 +48,9 @@ def corpus_list(corpus_id):
 
 	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r))
 
+@app.route("/corpus/<corpus_id>/search/")
 @app.route("/corpus/<corpus_id>/search/<request>")
-def corpus_search(corpus_id, request):
+def corpus_search(corpus_id, request = ""):
 #	add_docid(corpus_id)
 
 	ix = open_dir("repository/"+corpus_id)
