@@ -4,15 +4,13 @@
 
 <p>results: {{ num_results }}</p>
 
-{% if query %}
-<p><input id="search" value="{{ query }}"></input></p>
-{% endif %}
+{% include 'search.html' %}
 
 <ul>
 <li><a href="/">home</a></li>
 </ul>
 
-  <ul class=entries>
+  <ul class="entries">
   {% for entry in items %}
     <li><h2><a href="/corpus/{{ corpus_id }}/doc/{{ entry.UT }}">{{ entry.TI }}</a></h2>
 	

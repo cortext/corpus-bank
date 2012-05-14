@@ -34,7 +34,7 @@ def schema(corpus_id):
 	ix = open_dir("repository/"+corpus_id)
 	return str(ix.schema)
 
-@app.route("/corpus/<corpus_id>/list")
+@app.route("/corpus/<corpus_id>/")
 def corpus_list(corpus_id):
 #	add_docid(corpus_id)
 	
