@@ -72,3 +72,14 @@ def corpus_doc(corpus_id, doc_id):
 	doc = sc.document(UT=doc_id)
 	
 	return render_template("doc.html", corpus_id = corpus_id, doc = doc)
+	
+@app.route("/corpus/<corpus_id>/search/<request>/count")
+def pre_count(corpus_id, request = ""):
+	ix = open_dir("repository/"+corpus_id)
+
+	sc = ix.searcher()
+
+	q = QueryParser("CO", schema=ix.schema).parse(request)
+	r = sc.search(q, limit=50)
+
+	return str(len(r))
