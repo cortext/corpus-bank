@@ -35,7 +35,8 @@ def schema(corpus_id):
 	return str(ix.schema)
 
 @app.route("/corpus/<corpus_id>/")
-def corpus_list(corpus_id):
+@app.route("/corpus/<corpus_id>/page/<int:page>")
+def corpus_list(corpus_id, page = 1):
 #	add_docid(corpus_id)
 	
 	ix = open_dir("repository/"+corpus_id)
@@ -43,14 +44,15 @@ def corpus_list(corpus_id):
 	sc = ix.searcher()
 
 	q = Every()
-	r = sc.search(q, limit=50)
+	r = sc.search_page(q, page, pagelen=50)
 #	r = sc.search(q, limit="none")
 
-	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r))
+	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r), page = page, last_page = r.pagecount)
 
 @app.route("/corpus/<corpus_id>/search/")
 @app.route("/corpus/<corpus_id>/search/<request>")
-def corpus_search(corpus_id, request = ""):
+@app.route("/corpus/<corpus_id>/search/<request>/page/<int:page>")
+def corpus_search(corpus_id, request = "", page = 1):
 #	add_docid(corpus_id)
 
 	ix = open_dir("repository/"+corpus_id)
@@ -58,10 +60,11 @@ def corpus_search(corpus_id, request = ""):
 	sc = ix.searcher()
 
 	q = QueryParser("CO", schema=ix.schema).parse(request)
-	r = sc.search(q, limit=50)
+	r = sc.search_page(q, page, pagelen=50)
+#	r = sc.search(q, limit=50)
 #	r = sc.search(q, limit="none")	
 
-	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r), query = q)
+	return render_template("list.html", corpus_id = corpus_id, items = r, num_results = len(r), query = q, page = page, last_page = r.pagecount)
 
 @app.route("/corpus/<corpus_id>/doc/<doc_id>")
 def corpus_doc(corpus_id, doc_id):

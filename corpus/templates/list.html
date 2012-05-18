@@ -4,6 +4,8 @@
 
 {% include 'search.html' %}
 
+{% include 'pagination.html' %}
+
 <ul>
 <li><a href="/">home</a></li>
 </ul>
@@ -19,8 +21,6 @@
 		</tr>
   	{% endfor %}
 	</table>
-
-	<hr />
   {% else %}
     <li><em>Y a rien, me. repasse plus tard steup.</em>
   {% endfor %}
