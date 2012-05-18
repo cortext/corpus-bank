@@ -2,28 +2,18 @@
 
 {% block body %}
 
+{% include 'path.html' %}
 {% include 'search.html' %}
-
 {% include 'pagination.html' %}
-
-<!-- <ul>
-<li><a href="/">home</a></li>
-</ul>
- -->
 
 <ul class="entries">
   {% for entry in items %}
     <li><h2><a href="/corpus/{{ corpus_id }}/doc/{{ entry.UT }}">{{ entry.TI }}</a></h2>
 	
-	<table>
-	{% for k,v in entry.iteritems() %}
-		<tr>
-		<td class="key">{{ k }}</td><td>{{ v }}</td>
-		</tr>
-  	{% endfor %}
-	</table>
+	{% include 'entry_table.html' %}
+
   {% else %}
-    <li><em>Y a rien, me. repasse plus tard steup.</em>
+    <li><em>Y a rien, mec. repasse plus tard steup.</em>
   {% endfor %}
   </ul>
 

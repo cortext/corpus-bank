@@ -74,7 +74,7 @@ def corpus_doc(corpus_id, doc_id):
 	
 	doc = sc.document(UT=doc_id)
 	
-	return render_template("doc.html", corpus_id = corpus_id, doc = doc)
+	return render_template("doc.html", corpus_id = corpus_id, entry = doc)
 	
 @app.route("/corpus/<corpus_id>/search/<request>/count")
 def pre_count(corpus_id, request = ""):
