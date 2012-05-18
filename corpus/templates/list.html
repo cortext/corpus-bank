@@ -6,11 +6,12 @@
 
 {% include 'pagination.html' %}
 
-<ul>
+<!-- <ul>
 <li><a href="/">home</a></li>
 </ul>
+ -->
 
-  <ul class="entries">
+<ul class="entries">
   {% for entry in items %}
     <li><h2><a href="/corpus/{{ corpus_id }}/doc/{{ entry.UT }}">{{ entry.TI }}</a></h2>
 	
@@ -26,4 +27,7 @@
   {% endfor %}
   </ul>
 
+{% include 'pagination.html' %}
+
 {% endblock %}
+
