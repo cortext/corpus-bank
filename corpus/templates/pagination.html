@@ -1,0 +1,9 @@
+<nav class="pagination">
+	{% if page > 1 %}
+	<span><a href="/corpus/{{ corpus_id }}{{ "/search/" if query }}{{ query if query }}/page/{{ page - 1 }}">&#9664;</a></span>
+	{% endif %}
+	<span><input id="current_page" value={{ page }} /> / {{ last_page }}</span>
+	{% if page < last_page %}
+	<span><a href="/corpus/{{ corpus_id }}{{ "/search/" if query }}{{ query if query }}/page/{{ page + 1 }}">&#9654;</a></span>
+	{% endif %}
+</nav>

@@ -1,0 +1,24 @@
+@import "reset.css";
+
+body { font-family : arial; margin-bottom : 3em;}
+
+#path a { display : block; padding : 0.5em 20px; color : white; text-decoration : none; }
+#path a.home { background-color : #777777; font-size : 0.7em; }
+#path a.current_corpus { background-color : #EE6E21; }
+
+#search { background-color : #27AD19; padding : 20px; }
+#search input { width : 1140px; border : 1px solid #fff; padding : 10px; font : 18px/20px arial; }
+#search #num_results { position : relative; height : 0em; text-align : right; font : 10px/1em arial; color : #fff; }
+
+.pagination { background-color : #D0D644; text-align : center; padding : 5px; }
+.pagination input { width : 3em; }
+.pagination a { text-decoration : none; color : #27AD19; }
+
+.page { width : 1200px; margin : auto; }
+
+h2 { margin: 3em 0 1em 0;  background-color : #32B9E5;}
+h2 a { color : #FFF; background-color : #235BBE; padding : 0.5em; text-decoration : none; display : inline-block;}
+
+table * { padding : 0.2em; line-height : 1.5em; }
+
+.key { text-align : right; color : #999999; width : 3em; }
